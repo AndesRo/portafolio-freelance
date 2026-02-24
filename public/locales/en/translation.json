@@ -9,7 +9,7 @@
   "hero": {
     "greeting": "Hi, I'm",
     "name": "Andrew",
-    "title": "Full Stack Developer Junior",
+    "title": "Software Developer Junior",
     "description": "I build scalable web applications, enterprise systems, and automation solutions with a focus on performance and user experience.",
     "buttons": {
       "projects": "View projects",
@@ -19,7 +19,7 @@
   },
   "about": {
     "title": "About me",
-    "description": "I am a full stack developer with experience in building web systems, API integrations, and process automation. I love solving real problems with clean code and efficient architectures.",
+    "description": "I am a software developer junior with experience in building web systems, API integrations, and process automation. I love solving real problems with clean code and efficient architectures.",
     "technologies": "Technologies I master"
   },
   "projects": {

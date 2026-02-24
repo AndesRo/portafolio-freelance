@@ -9,7 +9,7 @@
   "hero": {
     "greeting": "Hola, soy",
     "name": "Andres",
-    "title": "Full Stack Developer Junior",
+    "title": "Software Developer Junior",
     "description": "Construyo aplicaciones web escalables, sistemas empresariales y soluciones de automatización con foco en rendimiento y experiencia de usuario.",
     "buttons": {
       "projects": "Ver proyectos",
@@ -19,7 +19,7 @@
   },
   "about": {
     "title": "Sobre mí",
-    "description": "Soy desarrollador full stack developer junior, creación de sistemas web, integración de APIs y automatización de procesos. Me apasiona resolver problemas reales mediante código limpio y arquitecturas eficientes.",
+    "description": "Soy desarrollador software developer junior, creación de sistemas web, integración de APIs y automatización de procesos. Me apasiona resolver problemas reales mediante código limpio y arquitecturas eficientes.",
     "technologies": "Tecnologías que domino"
   },
   "projects": {
