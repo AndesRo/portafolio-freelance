@@ -8,7 +8,7 @@
   },
   "hero": {
     "greeting": "Hola, soy",
-    "name": "Andres Romero",
+    "name": "Andres",
     "title": "Full Stack Developer Junior",
     "description": "Construyo aplicaciones web escalables, sistemas empresariales y soluciones de automatización con foco en rendimiento y experiencia de usuario.",
     "buttons": {

@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>{t('hero.name')} - Full Stack Developerr</title>
+        <title>{t('hero.name')} - Full Stack Developer Junior</title>
         <meta name="description" content={t('hero.description')} />
       </Helmet>
       <Hero />
