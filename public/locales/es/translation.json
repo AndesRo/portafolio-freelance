@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "name": "Andres Romero",
+    "title": "Full Stack Developer Junior",
+    "description": "Construyo aplicaciones web escalables, sistemas empresariales y soluciones de automatización con foco en rendimiento y experiencia de usuario.",
+    "buttons": {
+      "projects": "Ver proyectos",
+      "cv": "Descargar CV",
+      "contact": "Contacto"
+    }
+  },
+  "about": {
+    "title": "Sobre mí",
+    "description": "Soy desarrollador full stack developer junior, creación de sistemas web, integración de APIs y automatización de procesos. Me apasiona resolver problemas reales mediante código limpio y arquitecturas eficientes.",
+    "technologies": "Tecnologías que domino"
+  },
+  "projects": {
+    "title": "Proyectos destacados",
+    "project1": {
+      "title": "App Web Inventario Taller Mecánico",
+      "description": "Sistema de gestión de inventario con control de stock, CRUD, autenticación y dashboard administrativo. Desarrollado con React, Node.js y MySQL.",
+      "problem": "Optimiza el control de repuestos y productos en talleres mecánicos, reduciendo pérdidas y agilizando la gestión.",
+      "tech": "React, Node.js,Supabase,Vercel,Tailwind"
+    },
+    "project2": {
+      "title": "Landing Pages de Propiedades",
+      "description": "Landing pages optimizadas para conversión inmobiliaria, con formularios conectados a backend y envío automático de correos.",
+      "problem": "Aumenta la captación de leads y la eficiencia en la comunicación con clientes interesados en propiedades.",
+      "tech": "React, Node.js, EmailJS, Tailwind"
+    },
+    "project3": {
+      "title": "Sistema de Reclamos Turísticos",
+      "description": "Plataforma completa para gestión de reclamos con registro de usuarios, panel administrativo, reportes y seguridad. Proyecto final de titulación.",
+      "problem": "Facilita a agencias de viajes la administración de quejas y reclamos, mejorando la respuesta al cliente.",
+      "tech": "Html, CSS, JavaScript,bootstrap, MySQL"
+    },
+    "demo": "Demo",
+    "code": "Código"
+  },
+  "skills": {
+    "title": "Habilidades técnicas",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "database": "Bases de datos",
+    "devops": "DevOps",
+    "tools": "Herramientas"
+  },
+  "contact": {
+    "title": "Contacto",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "send": "Enviar mensaje",
+    "success": "¡Mensaje enviado con éxito!",
+    "error": "Hubo un error, intenta de nuevo."
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  }
+}
