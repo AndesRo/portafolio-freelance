@@ -45,7 +45,7 @@ const Hero = () => {
               <Link to="projects" smooth={true} duration={500}>
                 <Button>{t('hero.buttons.projects')}</Button>
               </Link>
-              <a href="/cv.pdf" download>
+              <a href="/cv/cv_andres.pdf" download>
                 <Button variant="secondary">{t('hero.buttons.cv')}</Button>
               </a>
               <Link to="contact" smooth={true} duration={500}>

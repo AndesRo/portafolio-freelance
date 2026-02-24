@@ -8,8 +8,8 @@
   },
   "hero": {
     "greeting": "Hi, I'm",
-    "name": "Your Name",
-    "title": "Full Stack Developer",
+    "name": "Andrew",
+    "title": "Full Stack Developer Junior",
     "description": "I build scalable web applications, enterprise systems, and automation solutions with a focus on performance and user experience.",
     "buttons": {
       "projects": "View projects",
