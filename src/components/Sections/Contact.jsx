@@ -8,9 +8,25 @@ import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
 import emailjs from '@emailjs/browser'
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15 }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 }
+  }
+}
+
 const Contact = () => {
   const { t } = useTranslation()
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 })
 
   const {
     register,
@@ -25,157 +41,138 @@ const Contact = () => {
   const onSubmit = (data) => {
     setLoading(true)
 
-    const templateParams = {
-      user_name: data.name,
-      user_email: data.email,
-      message: data.message,
-    }
-
     emailjs.send(
       'service_aw6upyn',
       'template_82qp8gv',
-      templateParams,
+      {
+        user_name: data.name,
+        user_email: data.email,
+        message: data.message,
+      },
       'h0zQr5hy6-ghMbWXf'
     )
-    .then(() => {
-      setSubmitted(true)
-      reset()
-      setTimeout(() => setSubmitted(false), 3000)
-    })
-    .catch((error) => {
-      console.error(error)
-      alert('Error enviando el mensaje')
-    })
-    .finally(() => {
-      setLoading(false)
-    })
+      .then(() => {
+        setSubmitted(true)
+        reset()
+        setTimeout(() => setSubmitted(false), 3000)
+      })
+      .catch(() => alert(t('contact.error')))
+      .finally(() => setLoading(false))
   }
 
   return (
-    <section id="contact" className="py-20">
-      <div className="container mx-auto px-4 max-w-2xl">
+    <section
+      id="contact"
+      className="relative py-32 bg-white dark:bg-slate-950"
+    >
+      <div className="container mx-auto px-6">
+
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="max-w-4xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
-            {t('contact.title')}
-          </h2>
 
-          {submitted && (
-            <div className="mb-4 p-3 bg-green-100 text-green-700 rounded-lg text-center">
-              {t('contact.success')}
-            </div>
-          )}
-
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="space-y-6"
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl md:text-5xl font-bold mb-14 text-center"
           >
-            {/* Nombre */}
-            <div>
-              <label htmlFor="name" className="block mb-2 font-medium">
-                {t('contact.name')}
-              </label>
-              <input
-                type="text"
-                id="name"
-                {...register('name', { required: true })}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 outline-none"
-              />
-              {errors.name && (
-                <p className="mt-1 text-red-500 text-sm">
-                  Este campo es requerido
-                </p>
-              )}
-            </div>
+            {t('contact.title')}
+          </motion.h2>
 
-            {/* Email */}
-            <div>
-              <label htmlFor="email" className="block mb-2 font-medium">
-                {t('contact.email')}
-              </label>
-              <input
-                type="email"
-                id="email"
-                {...register('email', {
-                  required: true,
-                  pattern: /^\S+@\S+\.\S+$/i
-                })}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 outline-none"
-              />
-              {errors.email?.type === 'required' && (
-                <p className="mt-1 text-red-500 text-sm">
-                  Este campo es requerido
-                </p>
-              )}
-              {errors.email?.type === 'pattern' && (
-                <p className="mt-1 text-red-500 text-sm">
-                  Correo inválido
-                </p>
-              )}
-            </div>
+          {/* FORMULARIO */}
+          <motion.div
+            variants={itemVariants}
+            className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-10 rounded-3xl shadow-2xl"
+          >
+            {submitted && (
+              <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-xl text-center">
+                {t('contact.success')}
+              </div>
+            )}
 
-            {/* Mensaje */}
-            <div>
-              <label htmlFor="message" className="block mb-2 font-medium">
-                {t('contact.message')}
-              </label>
-              <textarea
-                id="message"
-                rows="5"
-                {...register('message', { required: true })}
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 outline-none"
-              />
-              {errors.message && (
-                <p className="mt-1 text-red-500 text-sm">
-                  Este campo es requerido
-                </p>
-              )}
-            </div>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
 
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Enviando...' : t('contact.send')}
-            </Button>
-          </form>
+              <div>
+                <label className="block mb-2 text-sm font-medium">
+                  {t('contact.name')}
+                </label>
+                <input
+                  {...register('name', { required: true })}
+                  className="w-full px-5 py-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-blue-500 outline-none transition"
+                />
+                {errors.name && (
+                  <p className="mt-1 text-red-500 text-sm">
+                    {t('contact.required')}
+                  </p>
+                )}
+              </div>
 
-          {/* Redes sociales */}
-          <div className="flex justify-center space-x-6 mt-8">
-            <a
-              href="https://github.com/AndesRo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-3xl text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              <FaGithub />
-            </a>
+              <div>
+                <label className="block mb-2 text-sm font-medium">
+                  {t('contact.email')}
+                </label>
+                <input
+                  type="email"
+                  {...register('email', { required: true })}
+                  className="w-full px-5 py-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-blue-500 outline-none transition"
+                />
+                {errors.email && (
+                  <p className="mt-1 text-red-500 text-sm">
+                    {t('contact.invalidEmail')}
+                  </p>
+                )}
+              </div>
 
-            <a
-              href="https://www.linkedin.com/in/romeromllq/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-3xl text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              <FaLinkedin />
-            </a>
+              <div>
+                <label className="block mb-2 text-sm font-medium">
+                  {t('contact.message')}
+                </label>
+                <textarea
+                  rows="6"
+                  {...register('message', { required: true })}
+                  className="w-full px-5 py-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-blue-500 outline-none transition"
+                />
+                {errors.message && (
+                  <p className="mt-1 text-red-500 text-sm">
+                    {t('contact.required')}
+                  </p>
+                )}
+              </div>
 
-            <a
-              href="mailto:andespart.ar@gmail.com"
-              className="text-3xl text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              <MdEmail />
-            </a>
+              <Button type="submit" className="w-full py-4 text-lg" disabled={loading}>
+                {loading ? t('contact.sending') : t('contact.send')}
+              </Button>
 
-            <a
-              href="https://wa.me/56997416485"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-3xl text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              <FaWhatsapp />
-            </a>
-          </div>
+            </form>
+          </motion.div>
+
+          {/* REDES SOCIALES ABAJO */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6"
+          >
+            {[
+              { icon: <MdEmail size={26} />, link: "mailto:andespart.ar@gmail.com", label: "Email" },
+              { icon: <FaGithub size={26} />, link: "https://github.com/AndesRo", label: "GitHub" },
+              { icon: <FaLinkedin size={26} />, link: "https://www.linkedin.com/in/romeromllq/", label: "LinkedIn" },
+              { icon: <FaWhatsapp size={26} />, link: "https://wa.me/56997416485", label: "WhatsApp" }
+            ].map((item, i) => (
+              <a
+                key={i}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:shadow-xl hover:-translate-y-1 transition-all"
+              >
+                {item.icon}
+                <span className="text-sm font-medium">{item.label}</span>
+              </a>
+            ))}
+          </motion.div>
+
         </motion.div>
       </div>
     </section>

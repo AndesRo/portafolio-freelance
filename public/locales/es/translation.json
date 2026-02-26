@@ -1,68 +1,74 @@
 {
   "nav": {
     "home": "Inicio",
-    "about": "Sobre mí",
+    "about": "Perfil",
     "projects": "Proyectos",
-    "skills": "Habilidades",
+    "skills": "Stack",
     "contact": "Contacto"
   },
-  "hero": {
-    "greeting": "Hola, soy",
-    "name": "Andres",
-    "title": "Software Developer Junior",
-    "description": "Construyo aplicaciones web escalables, sistemas empresariales y soluciones de automatización con foco en rendimiento y experiencia de usuario.",
-    "buttons": {
-      "projects": "Ver proyectos",
-      "cv": "Descargar CV",
-      "contact": "Contacto"
-    }
+"hero": {
+  "greeting": "Desarrollador de Software",
+  "name": "Freelance",
+  "description": "Construyo aplicaciones web escalables, sistemas empresariales y soluciones de automatización con foco en rendimiento y experiencia de usuario",
+  "buttons": {
+    "cv": "Ver CV",
+    "contact": "Hablemos"
   },
+  "modalTitle": "Curriculum Vitae",
+  "download": "Descargar PDF",
+  "typewriter": [
+    "Entusiasta de React",
+    "Enfocado en Frontend",
+    "Solucionador de problemas",
+    "Construyendo productos escalables"
+  ]
+},
   "about": {
-    "title": "Sobre mí",
-    "description": "Soy desarrollador software developer junior, creación de sistemas web, integración de APIs y automatización de procesos. Me apasiona resolver problemas reales mediante código limpio y arquitecturas eficientes.",
-    "technologies": "Tecnologías que domino"
+    "title": "Perfil profesional",
+    "description": "Desarrollador enfocado en la construcción de soluciones web, integración de APIs y automatización de procesos. Trabajo con arquitecturas limpias y buenas prácticas para crear productos mantenibles y escalables.",
+    "technologies": "Tecnologías principales"
   },
   "projects": {
     "title": "Proyectos destacados",
     "project1": {
-      "title": "App Web Inventario Taller Mecánico",
-      "description": "Sistema de gestión de inventario con control de stock, CRUD, autenticación y dashboard administrativo. Desarrollado con React, Node.js y MySQL.",
-      "problem": "Optimiza el control de repuestos y productos en talleres mecánicos, reduciendo pérdidas y agilizando la gestión.",
-      "tech": "React, Node.js,Supabase,Vercel,Tailwind"
+      "title": "Sistema de Gestión para Taller Mecánico",
+      "description": "Aplicación web para control de inventario con autenticación, dashboard administrativo y gestión de stock en tiempo real.",
+      "problem": "Reduce pérdidas operativas y mejora la trazabilidad de repuestos mediante un sistema centralizado.",
+      "tech": "React, Node.js, Supabase, Vercel, Tailwind"
     },
     "project2": {
-      "title": "Landing Pages de Propiedades",
-      "description": "Landing pages optimizadas para conversión inmobiliaria, con formularios conectados a backend y envío automático de correos.",
-      "problem": "Aumenta la captación de leads y la eficiencia en la comunicación con clientes interesados en propiedades.",
+      "title": "Landing Pages Inmobiliarias",
+      "description": "Landing pages optimizadas para conversión con integración backend y automatización de correos.",
+      "problem": "Incrementa la captación de leads y optimiza el seguimiento de clientes interesados.",
       "tech": "React, Node.js, EmailJS, Tailwind"
     },
     "project3": {
-      "title": "Sistema de Reclamos Turísticos",
-      "description": "Plataforma completa para gestión de reclamos con registro de usuarios, panel administrativo, reportes y seguridad. Proyecto final de titulación.",
-      "problem": "Facilita a agencias de viajes la administración de quejas y reclamos, mejorando la respuesta al cliente.",
-      "tech": "Html, CSS, JavaScript,bootstrap, MySQL"
+      "title": "Plataforma de Gestión de Reclamos",
+      "description": "Sistema completo con autenticación, panel administrativo y reportes para gestión de reclamos turísticos.",
+      "problem": "Centraliza la gestión de incidencias y mejora los tiempos de respuesta al cliente.",
+      "tech": "HTML, CSS, JavaScript, Bootstrap, MySQL"
     },
-    "demo": "Demo",
-    "code": "Código"
+    "demo": "Ver demo",
+    "code": "Repositorio"
   },
   "skills": {
-    "title": "Habilidades técnicas",
-    "frontend": "Frontend",
-    "backend": "Backend",
+    "title": "Stack técnico",
+    "frontend": "Frontend Engineering",
+    "backend": "Backend Engineering",
     "database": "Bases de datos",
-    "devops": "DevOps",
+    "devops": "DevOps & Deploy",
     "tools": "Herramientas"
   },
   "contact": {
     "title": "Contacto",
     "name": "Nombre",
     "email": "Correo electrónico",
-    "message": "Mensaje",
+    "message": "Cuéntame sobre tu proyecto",
     "send": "Enviar mensaje",
-    "success": "¡Mensaje enviado con éxito!",
-    "error": "Hubo un error, intenta de nuevo."
+    "success": "Mensaje enviado correctamente. Te responderé pronto.",
+    "error": "Ocurrió un error. Intenta nuevamente."
   },
   "footer": {
-    "rights": "Todos los derechos reservados."
+    "rights": "© Andres. Todos los derechos reservados."
   }
 }

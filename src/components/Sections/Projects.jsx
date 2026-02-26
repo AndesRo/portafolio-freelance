@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import Card from '../UI/Card'
-import Button from '../UI/Button'
 
 const projects = [
   {
@@ -25,53 +23,130 @@ const projects = [
   },
 ]
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40, filter: 'blur(6px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.7, ease: 'easeOut' }
+  }
+}
+
 const Projects = () => {
   const { t } = useTranslation()
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 })
 
   return (
-    <section id="projects" className="py-20">
-      <div className="container mx-auto px-4">
-        <motion.h2
+    <section
+      id="projects"
+      className="relative py-24 bg-white dark:bg-slate-950 overflow-hidden"
+    >
+      {/* Background glow */}
+      <div className="absolute top-20 right-1/4 w-[500px] h-[500px] bg-indigo-500/10 blur-[120px] rounded-full -z-10"></div>
+
+      <div className="container mx-auto px-6">
+
+        <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-3xl md:text-4xl font-bold mb-12 text-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
         >
-          {t('projects.title')}
-        </motion.h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, idx) => (
-            <motion.div
-              key={project.key}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: idx * 0.2 }}
-            >
-              <Card>
-                <img src={project.image} alt={t(`projects.${project.key}.title`)} className="w-full h-48 object-cover" />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{t(`projects.${project.key}.title`)}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">{t(`projects.${project.key}.description`)}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-500 mb-2">
-                    <span className="font-semibold">Problema:</span> {t(`projects.${project.key}.problem`)}
-                  </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-500 mb-4">
-                    <span className="font-semibold">Tecnologías:</span> {t(`projects.${project.key}.tech`)}
-                  </p>
-                  <div className="flex justify-between">
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                      <Button variant="outline" size="sm">{t('projects.demo')}</Button>
+
+          {/* Title */}
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl md:text-5xl font-bold mb-16 text-center text-slate-900 dark:text-white"
+          >
+            {t('projects.title')}
+          </motion.h2>
+
+          {/* Grid */}
+          <motion.div
+            variants={containerVariants}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+          >
+            {projects.map((project) => (
+              <motion.div
+                key={project.key}
+                variants={itemVariants}
+                whileHover={{ y: -8 }}
+                className="group relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md hover:shadow-2xl transition-all duration-500"
+              >
+                {/* Image */}
+                <div className="relative overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={t(`projects.${project.key}.title`)}
+                    className="w-full h-56 object-cover group-hover:scale-110 transition duration-700"
+                  />
+
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center gap-4">
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2 rounded-lg bg-blue-600 text-white text-sm hover:bg-blue-700 transition"
+                    >
+                      {t('projects.demo')}
                     </a>
-                    <a href={project.code} target="_blank" rel="noopener noreferrer">
-                      <Button variant="secondary" size="sm">{t('projects.code')}</Button>
+
+                    <a
+                      href={project.code}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2 rounded-lg border border-white text-white text-sm hover:bg-white hover:text-black transition"
+                    >
+                      {t('projects.code')}
                     </a>
                   </div>
                 </div>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-3 text-slate-900 dark:text-white">
+                    {t(`projects.${project.key}.title`)}
+                  </h3>
+
+                  <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">
+                    {t(`projects.${project.key}.description`)}
+                  </p>
+
+                  <div className="text-xs text-slate-500 dark:text-slate-500 space-y-2">
+                    <p>
+                      <span className="font-semibold text-slate-700 dark:text-slate-300">
+                        Problema:
+                      </span>{' '}
+                      {t(`projects.${project.key}.problem`)}
+                    </p>
+
+                    <p>
+                      <span className="font-semibold text-slate-700 dark:text-slate-300">
+                        Stack:
+                      </span>{' '}
+                      {t(`projects.${project.key}.tech`)}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Hover glow */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/0 to-indigo-500/0 group-hover:from-blue-500/10 group-hover:to-indigo-500/10 transition duration-500 -z-10"></div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+        </motion.div>
       </div>
     </section>
   )

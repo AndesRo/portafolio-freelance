@@ -9,9 +9,6 @@ import {
   FaGitAlt, 
   FaDocker, 
   FaNodeJs,
-  FaDatabase,
-  FaCloud,
-  FaFigma,
   FaCode,
   FaServer
 } from 'react-icons/fa'
@@ -21,13 +18,9 @@ import {
   SiPostgresql, 
   SiMongodb, 
   SiPostman,
-  SiTypescript,
-  SiHtml5,
-  SiCss3,
   SiCloudflare
 } from 'react-icons/si'
 
-// Mapa de iconos para cada tecnología
 const iconMap = {
   'React': <FaReact className="text-blue-500" />,
   'JavaScript': <FaJs className="text-yellow-500" />,
@@ -36,8 +29,8 @@ const iconMap = {
   'Node.js': <FaNodeJs className="text-green-600" />,
   'PHP': <FaPhp className="text-indigo-400" />,
   'Python': <FaPython className="text-blue-400" />,
-  'REST APIs': <FaServer className="text-gray-600 dark:text-gray-400" />,
-  'MySQL': <SiMysql className="text-blue-800 dark:text-blue-400" />,
+  'REST APIs': <FaServer className="text-gray-500" />,
+  'MySQL': <SiMysql className="text-blue-600" />,
   'PostgreSQL': <SiPostgresql className="text-blue-500" />,
   'MongoDB': <SiMongodb className="text-green-600" />,
   'Git/GitHub': <FaGitAlt className="text-orange-600" />,
@@ -45,31 +38,29 @@ const iconMap = {
   'Docker': <FaDocker className="text-blue-500" />,
   'VS Code': <FaCode className="text-blue-500" />,
   'Postman': <SiPostman className="text-orange-600" />,
-  'Figma': <FaFigma className="text-purple-600" />,
 }
 
-// Componente de estrellas (5 estrellas, se llenan según nivel)
-const SkillStars = ({ level }) => {
-  const filled = Math.round(level / 20) // 20% por estrella
-  return (
-    <div className="flex space-x-0.5 text-lg">
-      {[...Array(5)].map((_, i) => (
-        <span 
-          key={i} 
-          className={i < filled ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'}
-        >
-          ★
-        </span>
-      ))}
-    </div>
-  )
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12 }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40, filter: 'blur(6px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.6, ease: 'easeOut' }
+  }
 }
 
 const Skills = () => {
   const { t } = useTranslation()
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 })
 
-  // Categorías con sus habilidades
   const categories = [
     {
       name: t('skills.frontend'),
@@ -89,11 +80,10 @@ const Skills = () => {
     },
     {
       name: t('skills.tools'),
-      skills: ['VS Code', 'Postman', 'Figma']
+      skills: ['VS Code', 'Postman']
     },
   ]
 
-  // Niveles de cada habilidad (ajusta según tu criterio)
   const skillLevels = {
     'React': 90,
     'JavaScript': 85,
@@ -111,46 +101,76 @@ const Skills = () => {
     'Docker': 60,
     'VS Code': 95,
     'Postman': 80,
-    'Figma': 65,
   }
 
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800/50">
-      <div className="container mx-auto px-4">
-        <motion.h2
+    <section
+      id="skills"
+      className="relative py-24 bg-white dark:bg-slate-950 overflow-hidden"
+    >
+      {/* Background glow */}
+      <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-blue-500/10 blur-[120px] rounded-full -z-10"></div>
+
+      <div className="container mx-auto px-6">
+        <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-3xl md:text-4xl font-bold mb-12 text-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
         >
-          {t('skills.title')}
-        </motion.h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categories.map((cat, idx) => (
-            <motion.div
-              key={cat.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md"
-            >
-              <h3 className="text-xl font-semibold mb-4 border-b pb-2 border-gray-200 dark:border-gray-700">
-                {cat.name}
-              </h3>
-              <div className="space-y-4">
-                {cat.skills.map(skill => (
-                  <div key={skill} className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      {iconMap[skill] || <FaCode className="text-gray-500" />}
-                      <span className="font-medium">{skill}</span>
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl md:text-5xl font-bold mb-16 text-center text-slate-900 dark:text-white"
+          >
+            {t('skills.title')}
+          </motion.h2>
+
+          <motion.div
+            variants={containerVariants}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+          >
+            {categories.map((cat) => (
+              <motion.div
+                key={cat.name}
+                variants={itemVariants}
+                className="bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200 dark:border-slate-800 p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500"
+              >
+                <h3 className="text-xl font-semibold mb-6 text-slate-900 dark:text-white">
+                  {cat.name}
+                </h3>
+
+                <div className="space-y-6">
+                  {cat.skills.map(skill => (
+                    <div key={skill}>
+                      <div className="flex justify-between items-center mb-2">
+                        <div className="flex items-center gap-3">
+                          {iconMap[skill]}
+                          <span className="text-sm font-medium text-slate-800 dark:text-slate-200">
+                            {skill}
+                          </span>
+                        </div>
+                        <span className="text-xs text-slate-500">
+                          {skillLevels[skill]}%
+                        </span>
+                      </div>
+
+                      {/* Animated Progress Bar */}
+                      <div className="h-2 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={inView ? { width: `${skillLevels[skill]}%` } : {}}
+                          transition={{ duration: 1, ease: 'easeOut' }}
+                          className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full"
+                        />
+                      </div>
                     </div>
-                    <SkillStars level={skillLevels[skill]} />
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+        </motion.div>
       </div>
     </section>
   )

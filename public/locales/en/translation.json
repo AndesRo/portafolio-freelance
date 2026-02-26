@@ -1,68 +1,74 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
+    "about": "Profile",
     "projects": "Projects",
-    "skills": "Skills",
+    "skills": "Tech Stack",
     "contact": "Contact"
   },
-  "hero": {
-    "greeting": "Hi, I'm",
-    "name": "Andrew",
-    "title": "Software Developer Junior",
-    "description": "I build scalable web applications, enterprise systems, and automation solutions with a focus on performance and user experience.",
-    "buttons": {
-      "projects": "View projects",
-      "cv": "Download CV",
-      "contact": "Contact"
-    }
+"hero": {
+  "greeting": "Software Developer",
+  "name": "Freelance",
+  "description": "I build scalable web applications, enterprise systems, and automation solutions with a focus on performance and user experience.",
+  "buttons": {
+    "cv": "View CV",
+    "contact": "Let's Talk"
   },
+  "modalTitle": "Curriculum Vitae",
+  "download": "Download PDF",
+  "typewriter": [
+    "React Enthusiast",
+    "Frontend Focused",
+    "Problem Solver",
+    "Building Scalable Products"
+  ]
+},
   "about": {
-    "title": "About me",
-    "description": "I am a software developer junior with experience in building web systems, API integrations, and process automation. I love solving real problems with clean code and efficient architectures.",
-    "technologies": "Technologies I master"
+    "title": "Professional Profile",
+    "description": "Software engineer focused on building robust web solutions, API integrations, and process automation. I work with clean architecture principles and best practices to create maintainable and scalable products.",
+    "technologies": "Core Technologies"
   },
   "projects": {
-    "title": "Featured projects",
+    "title": "Selected Projects",
     "project1": {
-      "title": "Workshop Inventory App",
-      "description": "Inventory management system with stock control, CRUD, authentication and admin dashboard. Built with React, Node.js and MySQL.",
-      "problem": "Optimizes parts and products control in auto repair shops, reducing losses and streamlining management.",
-      "tech": "React, Node.js,Supabase,Vercel,Tailwind"
+      "title": "Workshop Management System",
+      "description": "Web-based inventory and operations management system with authentication, real-time stock tracking, and administrative dashboard.",
+      "problem": "Reduces operational losses and improves traceability of parts through a centralized management system.",
+      "tech": "React, Node.js, Supabase, Vercel, Tailwind"
     },
     "project2": {
-      "title": "Real Estate Landing Pages",
-      "description": "Conversion-optimized landing pages for real estate, with forms connected to backend and automatic email sending.",
-      "problem": "Increases lead capture and communication efficiency with prospects interested in properties.",
+      "title": "Real Estate Conversion Landing Pages",
+      "description": "High-conversion landing pages with backend integration and automated email workflows.",
+      "problem": "Improves lead generation and streamlines follow-up processes with potential clients.",
       "tech": "React, Node.js, EmailJS, Tailwind"
     },
     "project3": {
-      "title": "Tourism Complaints System",
-      "description": "Complete platform for complaint management with user registration, admin panel, reports and security. Final degree project.",
-      "problem": "Helps travel agencies manage complaints and claims, improving customer response.",
-      "tech": "Html, CSS, JavaScript,bootstrap, MySQL"
+      "title": "Tourism Claims Management Platform",
+      "description": "Full-stack complaint management platform with authentication, admin dashboard, reporting system, and secure data handling.",
+      "problem": "Centralizes claim handling and improves customer response efficiency for travel agencies.",
+      "tech": "HTML, CSS, JavaScript, Bootstrap, MySQL"
     },
-    "demo": "Demo",
-    "code": "Code"
+    "demo": "Live demo",
+    "code": "Repository"
   },
   "skills": {
-    "title": "Technical skills",
-    "frontend": "Frontend",
-    "backend": "Backend",
+    "title": "Technical Expertise",
+    "frontend": "Frontend Engineering",
+    "backend": "Backend Engineering",
     "database": "Databases",
-    "devops": "DevOps",
-    "tools": "Tools"
+    "devops": "DevOps & Deployment",
+    "tools": "Development Tools"
   },
   "contact": {
     "title": "Contact",
     "name": "Name",
     "email": "Email",
-    "message": "Message",
+    "message": "Tell me about your project",
     "send": "Send message",
-    "success": "Message sent successfully!",
-    "error": "An error occurred, please try again."
+    "success": "Message sent successfully. I’ll get back to you soon.",
+    "error": "Something went wrong. Please try again."
   },
   "footer": {
-    "rights": "All rights reserved."
+    "rights": "© Andrew. All rights reserved."
   }
 }

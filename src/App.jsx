@@ -5,6 +5,7 @@ import { ThemeProvider } from './hooks/useTheme'
 import Navbar from './components/Layout/Navbar'
 import Footer from './components/Layout/Footer'
 import Home from './pages/Home'
+import ScrollButton from './components/UI/ScrollButton'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               </Routes>
             </main>
             <Footer />
+            <ScrollButton />
           </div>
         </BrowserRouter>
       </ThemeProvider>
