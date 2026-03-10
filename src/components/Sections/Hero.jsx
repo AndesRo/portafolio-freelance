@@ -104,47 +104,28 @@ const Hero = () => {
 
             </div>
 
-            {/* RIGHT */}
+            {/* RIGHT - Imagen con anillo minimalista gradiente */}
             <motion.div
               variants={itemVariants}
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 6, repeat: Infinity }}
               className="lg:w-1/2 flex justify-center"
             >
               <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} perspective={1000}>
-                <div className="relative flex items-center justify-center">
-
-                  {/* Rotating Ring */}
-                  <motion.div
-                    className="absolute w-80 h-80 rounded-full"
-                    style={{
-                      background:
-                        "conic-gradient(from 0deg, #3b82f6, #6366f1, #8b5cf6, #3b82f6)"
-                    }}
-                    animate={{ rotate: 360 }}
-                    transition={{
-                      duration: 20,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  >
-                    <div className="absolute inset-[6px] bg-white dark:bg-slate-950 rounded-full"></div>
-                  </motion.div>
-
-                  {/* Gradient Border */}
-                  <div className="relative p-[4px] rounded-full bg-gradient-to-tr from-blue-600 via-indigo-500 to-purple-600 shadow-2xl">
-                    <div className="absolute inset-0 rounded-full bg-blue-500/20 blur-2xl scale-110 -z-10"></div>
-
-                    <div className="w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden">
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 6, repeat: Infinity }}
+                  className="relative"
+                >
+                  {/* Anillo con gradiente y sombra */}
+                  <div className="rounded-full p-[2px] bg-gradient-to-r from-blue-600/70 via-indigo-500/70 to-purple-600/70 shadow-xl shadow-blue-500/20 dark:shadow-purple-500/20">
+                    <div className="rounded-full overflow-hidden">
                       <img
-                        src="/images/img-dev.jpg"
+                        src="/images/image_1.png"
                         alt="Developer"
-                        className="w-full h-full object-cover"
+                        className="w-64 h-64 md:w-72 md:h-72 object-cover"
                       />
                     </div>
                   </div>
-
-                </div>
+                </motion.div>
               </Tilt>
             </motion.div>
 
