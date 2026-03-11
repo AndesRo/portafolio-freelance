@@ -104,7 +104,7 @@ const Hero = () => {
 
             </div>
 
-            {/* RIGHT - Imagen con anillo minimalista gradiente */}
+            {/* RIGHT - Imagen con anillo estático animado interactivamente */}
             <motion.div
               variants={itemVariants}
               className="lg:w-1/2 flex justify-center"
@@ -115,16 +115,38 @@ const Hero = () => {
                   transition={{ duration: 6, repeat: Infinity }}
                   className="relative"
                 >
-                  {/* Anillo con gradiente y sombra */}
-                  <div className="rounded-full p-[2px] bg-gradient-to-r from-blue-600/70 via-indigo-500/70 to-purple-600/70 shadow-xl shadow-blue-500/20 dark:shadow-purple-500/20">
-                    <div className="rounded-full overflow-hidden">
-                      <img
-                        src="/images/image_1.png"
-                        alt="Developer"
-                        className="w-64 h-64 md:w-72 md:h-72 object-cover"
-                      />
-                    </div>
-                  </div>
+                  {/* Imagen */}
+                  <img
+                    src="/images/image_1.png"
+                    alt="Developer"
+                    className="w-64 h-64 md:w-72 md:h-72 rounded-full object-cover"
+                  />
+
+                  {/* Anillo estático con animaciones interactivas */}
+                  <motion.div
+                    className="absolute inset-0 rounded-full border-2 border-transparent"
+                    style={{
+                      background: 'linear-gradient(135deg, #3b82f6, #8b5cf6, #3b82f6)',
+                      mask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
+                      WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
+                      maskComposite: 'exclude',
+                      WebkitMaskComposite: 'xor',
+                    }}
+                    animate={{
+                      scale: [1, 1.02, 1],
+                      opacity: [0.7, 1, 0.7],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }}
+                    whileHover={{
+                      scale: 1.1,
+                      borderWidth: '4px',
+                      transition: { duration: 0.3 },
+                    }}
+                  />
                 </motion.div>
               </Tilt>
             </motion.div>
@@ -133,7 +155,7 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* CV MODAL */}
+      {/* CV MODAL (sin cambios) */}
       <AnimatePresence>
         {isOpen && (
           <Dialog
