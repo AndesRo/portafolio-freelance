@@ -27,20 +27,12 @@ const itemVariants = {
 const Contact = () => {
   const { t } = useTranslation()
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 })
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset
-  } = useForm()
-
+  const { register, handleSubmit, formState: { errors }, reset } = useForm()
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const onSubmit = (data) => {
     setLoading(true)
-
     emailjs.send(
       'service_aw6upyn',
       'template_82qp8gv',
@@ -60,119 +52,92 @@ const Contact = () => {
       .finally(() => setLoading(false))
   }
 
-  return (
-    <section
-      id="contact"
-      className="relative py-32 bg-white dark:bg-slate-950"
-    >
-      <div className="container mx-auto px-6">
+  const socialLinks = [
+    { icon: <MdEmail size={24} />, link: "mailto:andespart.ar@gmail.com", label: "Email" },
+    { icon: <FaGithub size={24} />, link: "https://github.com/AndesRo", label: "GitHub" },
+    { icon: <FaLinkedin size={24} />, link: "https://www.linkedin.com/in/romeromllq/", label: "LinkedIn" },
+    { icon: <FaWhatsapp size={24} />, link: "https://wa.me/56997416485", label: "WhatsApp" }
+  ]
 
+  return (
+    <section id="contact" className="relative py-20 bg-white dark:bg-slate-950">
+      <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="max-w-4xl mx-auto"
+          className="max-w-6xl mx-auto"
         >
-
-          <motion.h2
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold mb-14 text-center"
-          >
+          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold mb-12 text-center">
             {t('contact.title')}
           </motion.h2>
 
-          {/* FORMULARIO */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-10 rounded-3xl shadow-2xl"
-          >
-            {submitted && (
-              <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-xl text-center">
-                {t('contact.success')}
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-
-              <div>
-                <label className="block mb-2 text-sm font-medium">
-                  {t('contact.name')}
-                </label>
-                <input
-                  {...register('name', { required: true })}
-                  className="w-full px-5 py-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-blue-500 outline-none transition"
-                />
-                {errors.name && (
-                  <p className="mt-1 text-red-500 text-sm">
-                    {t('contact.required')}
-                  </p>
+          {/* Grid: Formulario + Redes sociales integradas */}
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Formulario - ocupa 2 columnas en lg */}
+            <motion.div variants={itemVariants} className="lg:col-span-2">
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl shadow-xl">
+                {submitted && (
+                  <div className="mb-6 p-3 bg-green-100 text-green-700 rounded-lg text-center text-sm">
+                    {t('contact.success')}
+                  </div>
                 )}
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                  <div>
+                    <label className="block mb-1 text-sm font-medium">{t('contact.name')}</label>
+                    <input
+                      {...register('name', { required: true })}
+                      className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-blue-500 outline-none transition"
+                    />
+                    {errors.name && <p className="mt-1 text-red-500 text-xs">{t('contact.required')}</p>}
+                  </div>
+                  <div>
+                    <label className="block mb-1 text-sm font-medium">{t('contact.email')}</label>
+                    <input
+                      type="email"
+                      {...register('email', { required: true })}
+                      className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-blue-500 outline-none transition"
+                    />
+                    {errors.email && <p className="mt-1 text-red-500 text-xs">{t('contact.invalidEmail')}</p>}
+                  </div>
+                  <div>
+                    <label className="block mb-1 text-sm font-medium">{t('contact.message')}</label>
+                    <textarea
+                      rows="4"
+                      {...register('message', { required: true })}
+                      className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-blue-500 outline-none transition"
+                    />
+                    {errors.message && <p className="mt-1 text-red-500 text-xs">{t('contact.required')}</p>}
+                  </div>
+                  <Button type="submit" className="w-full py-3 text-base" disabled={loading}>
+                    {loading ? t('contact.sending') : t('contact.send')}
+                  </Button>
+                </form>
               </div>
+            </motion.div>
 
-              <div>
-                <label className="block mb-2 text-sm font-medium">
-                  {t('contact.email')}
-                </label>
-                <input
-                  type="email"
-                  {...register('email', { required: true })}
-                  className="w-full px-5 py-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-blue-500 outline-none transition"
-                />
-                {errors.email && (
-                  <p className="mt-1 text-red-500 text-sm">
-                    {t('contact.invalidEmail')}
-                  </p>
-                )}
+            {/* Redes sociales - columna compacta */}
+            <motion.div variants={itemVariants} className="lg:col-span-1">
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-xl h-full flex flex-col justify-center">
+                <h3 className="text-lg font-semibold mb-4 text-center lg:text-left">Encuéntrame en</h3>
+                <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
+                  {socialLinks.map((item, i) => (
+                    <a
+                      key={i}
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:shadow-md hover:-translate-y-0.5 transition-all"
+                    >
+                      <span className="text-blue-600 dark:text-blue-400">{item.icon}</span>
+                      <span className="text-sm font-medium">{item.label}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
-
-              <div>
-                <label className="block mb-2 text-sm font-medium">
-                  {t('contact.message')}
-                </label>
-                <textarea
-                  rows="6"
-                  {...register('message', { required: true })}
-                  className="w-full px-5 py-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent focus:ring-2 focus:ring-blue-500 outline-none transition"
-                />
-                {errors.message && (
-                  <p className="mt-1 text-red-500 text-sm">
-                    {t('contact.required')}
-                  </p>
-                )}
-              </div>
-
-              <Button type="submit" className="w-full py-4 text-lg" disabled={loading}>
-                {loading ? t('contact.sending') : t('contact.send')}
-              </Button>
-
-            </form>
-          </motion.div>
-
-          {/* REDES SOCIALES ABAJO */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {[
-              { icon: <MdEmail size={26} />, link: "mailto:andespart.ar@gmail.com", label: "Email" },
-              { icon: <FaGithub size={26} />, link: "https://github.com/AndesRo", label: "GitHub" },
-              { icon: <FaLinkedin size={26} />, link: "https://www.linkedin.com/in/romeromllq/", label: "LinkedIn" },
-              { icon: <FaWhatsapp size={26} />, link: "https://wa.me/56997416485", label: "WhatsApp" }
-            ].map((item, i) => (
-              <a
-                key={i}
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:shadow-xl hover:-translate-y-1 transition-all"
-              >
-                {item.icon}
-                <span className="text-sm font-medium">{item.label}</span>
-              </a>
-            ))}
-          </motion.div>
-
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

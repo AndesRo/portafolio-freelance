@@ -21,7 +21,7 @@ const Navbar = () => {
     { to: 'hero', label: t('nav.home') },
     { to: 'about', label: t('nav.about') },
     { to: 'projects', label: t('nav.projects') },
-    { to: 'skills', label: t('nav.skills') },
+    { to: 'experience', label: t('nav.experience') }, // ← reemplazado skills por experience
     { to: 'contact', label: t('nav.contact') },
   ]
 
@@ -30,7 +30,7 @@ const Navbar = () => {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`sticky top-0 w-full z-50  transition-all duration-500 ${
+      className={`sticky top-0 w-full z-50 transition-all duration-500 ${
         scrolled
           ? 'bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl shadow-xl border-b border-white/10'
           : 'bg-transparent'
@@ -61,10 +61,9 @@ const Navbar = () => {
               spy
               offset={-80}
               activeClass="active-link"
-              className="relative cursor-pointer text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="relative cursor-pointer text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors group"
             >
               {item.label}
-
               {/* Animated underline */}
               <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300 group-hover:w-full" />
             </Link>

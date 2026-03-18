@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-scroll'
 import { useTypewriter, Cursor } from 'react-simple-typewriter'
 import { Dialog } from '@headlessui/react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Tilt from 'react-parallax-tilt'
 
 const containerVariants = {
@@ -26,12 +26,38 @@ const itemVariants = {
 const Hero = () => {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
+  const [particles, setParticles] = useState([])
 
   const [text] = useTypewriter({
     words: t('hero.typewriter', { returnObjects: true }),
     loop: true,
     delaySpeed: 2000,
   })
+
+  // Generar partículas alrededor de la imagen
+  useEffect(() => {
+    const count = 12 // Número de partículas
+    const newParticles = []
+    for (let i = 0; i < count; i++) {
+      // Posición aleatoria alrededor del círculo (en coordenadas polares)
+      const angle = (i * (360 / count)) + Math.random() * 20 - 10 // desfase aleatorio
+      const radius = 140 + Math.random() * 30 // distancia desde el centro (ajusta según el tamaño de la imagen)
+      const x = Math.cos((angle * Math.PI) / 180) * radius
+      const y = Math.sin((angle * Math.PI) / 180) * radius
+      const size = 2 + Math.random() * 4
+      const duration = 2 + Math.random() * 4
+      const delay = Math.random() * 2
+      newParticles.push({
+        id: i,
+        x,
+        y,
+        size,
+        duration,
+        delay,
+      })
+    }
+    setParticles(newParticles)
+  }, [])
 
   return (
     <>
@@ -104,7 +130,7 @@ const Hero = () => {
 
             </div>
 
-            {/* RIGHT - Imagen con anillo estático animado interactivamente */}
+            {/* RIGHT - Imagen con anillo y partículas */}
             <motion.div
               variants={itemVariants}
               className="lg:w-1/2 flex justify-center"
@@ -122,11 +148,11 @@ const Hero = () => {
                     className="w-64 h-64 md:w-72 md:h-72 rounded-full object-cover"
                   />
 
-                  {/* Anillo estático con animaciones interactivas */}
+                  {/* Anillo con gradiente según tema */}
                   <motion.div
                     className="absolute inset-0 rounded-full border-2 border-transparent"
                     style={{
-                      background: 'linear-gradient(135deg, #3b82f6, #8b5cf6, #3b82f6)',
+                      background: 'linear-gradient(135deg, var(--ring-start), var(--ring-middle), var(--ring-end))',
                       mask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
                       WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
                       maskComposite: 'exclude',
@@ -147,6 +173,33 @@ const Hero = () => {
                       transition: { duration: 0.3 },
                     }}
                   />
+
+                  {/* Partículas */}
+                  {particles.map((p) => (
+                    <motion.div
+                      key={p.id}
+                      className="absolute rounded-full bg-blue-400 dark:bg-purple-400"
+                      style={{
+                        width: p.size,
+                        height: p.size,
+                        left: '50%',
+                        top: '50%',
+                        x: p.x,
+                        y: p.y,
+                        opacity: 0.6,
+                      }}
+                      animate={{
+                        scale: [1, 1.5, 1],
+                        opacity: [0.4, 0.8, 0.4],
+                      }}
+                      transition={{
+                        duration: p.duration,
+                        repeat: Infinity,
+                        delay: p.delay,
+                        ease: 'easeInOut',
+                      }}
+                    />
+                  ))}
                 </motion.div>
               </Tilt>
             </motion.div>

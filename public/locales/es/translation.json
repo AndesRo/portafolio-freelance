@@ -3,26 +3,26 @@
     "home": "Inicio",
     "about": "Perfil",
     "projects": "Proyectos",
-    "skills": "Stack",
+    "experience": "Experiencia", 
     "contact": "Contacto"
   },
-"hero": {
-  "greeting": "Desarrollador de Software",
-  "name": "Freelance",
-  "description": "Construyo aplicaciones web escalables, sistemas empresariales y soluciones de automatización con foco en rendimiento y experiencia de usuario",
-  "buttons": {
-    "cv": "Ver CV",
-    "contact": "Hablemos"
+  "hero": {
+    "greeting": "Desarrollador de Software",
+    "name": "Freelance",
+    "description": "Construyo aplicaciones web escalables, sistemas empresariales y soluciones de automatización con foco en rendimiento y experiencia de usuario",
+    "buttons": {
+      "cv": "Ver CV",
+      "contact": "Hablemos"
+    },
+    "modalTitle": "Curriculum Vitae",
+    "download": "Descargar PDF",
+    "typewriter": [
+      "Entusiasta de React",
+      "Enfocado en Frontend",
+      "Solucionador de problemas",
+      "Construyendo productos escalables"
+    ]
   },
-  "modalTitle": "Curriculum Vitae",
-  "download": "Descargar PDF",
-  "typewriter": [
-    "Entusiasta de React",
-    "Enfocado en Frontend",
-    "Solucionador de problemas",
-    "Construyendo productos escalables"
-  ]
-},
   "about": {
     "title": "Perfil profesional",
     "description": "Desarrollador enfocado en la construcción de soluciones web, integración de APIs y automatización de procesos. Trabajo con arquitecturas limpias y buenas prácticas para crear productos mantenibles y escalables.",
@@ -58,6 +58,9 @@
     "database": "Bases de datos",
     "devops": "DevOps & Deploy",
     "tools": "Herramientas"
+  },
+  "experience": {
+    "title": "Experiencia Profesional"
   },
   "contact": {
     "title": "Contacto",

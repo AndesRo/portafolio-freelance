@@ -40,3 +40,14 @@
 .read-the-docs {
   color: #888;
 }
+:root {
+  --ring-start: #3b82f6; /* azul */
+  --ring-middle: #8b5cf6; /* púrpura */
+  --ring-end: #3b82f6; /* azul */
+}
+
+.dark {
+  --ring-start: #a855f7; /* púrpura claro */
+  --ring-middle: #3b82f6; /* azul */
+  --ring-end: #a855f7; /* púrpura */
+}

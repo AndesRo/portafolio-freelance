@@ -3,26 +3,26 @@
     "home": "Home",
     "about": "Profile",
     "projects": "Projects",
-    "skills": "Tech Stack",
+    "experience": "Experience", 
     "contact": "Contact"
   },
-"hero": {
-  "greeting": "Software Developer",
-  "name": "Freelance",
-  "description": "I build scalable web applications, enterprise systems, and automation solutions with a focus on performance and user experience.",
-  "buttons": {
-    "cv": "View CV",
-    "contact": "Let's Talk"
+  "hero": {
+    "greeting": "Software Developer",
+    "name": "Freelance",
+    "description": "I build scalable web applications, enterprise systems, and automation solutions with a focus on performance and user experience.",
+    "buttons": {
+      "cv": "View CV",
+      "contact": "Let's Talk"
+    },
+    "modalTitle": "Curriculum Vitae",
+    "download": "Download PDF",
+    "typewriter": [
+      "React Enthusiast",
+      "Frontend Focused",
+      "Problem Solver",
+      "Building Scalable Products"
+    ]
   },
-  "modalTitle": "Curriculum Vitae",
-  "download": "Download PDF",
-  "typewriter": [
-    "React Enthusiast",
-    "Frontend Focused",
-    "Problem Solver",
-    "Building Scalable Products"
-  ]
-},
   "about": {
     "title": "Professional Profile",
     "description": "Software engineer focused on building robust web solutions, API integrations, and process automation. I work with clean architecture principles and best practices to create maintainable and scalable products.",
@@ -58,6 +58,9 @@
     "database": "Databases",
     "devops": "DevOps & Deployment",
     "tools": "Development Tools"
+  },
+  "experience": {
+    "title": "Professional Experience"
   },
   "contact": {
     "title": "Contact",
